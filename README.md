@@ -115,6 +115,8 @@ powershell -File mt4_dll\verify_all.ps1
 
 ## 通达信安装
 
+> ⚠️ 若通达信装在 `C:\Program Files` 等受保护目录，复制 DLL 或加载可能提示"权限不足" → 请**以管理员身份运行通达信**（右键图标 → 「以管理员身份运行」）并给 `T0002\dlls` 授予写入权限。
+
 1. 将 `dist\tdx\slzs_chanlun.dll` 复制到通达信安装目录的 `T0002\dlls\` 下。
 2. 【关键 ⚠️ 必做】「绑定 DLL」：打开公式管理器（Ctrl+F），找到“DLL函数”区域，把 `slzs_chanlun.dll` 指定为 **第 3 号 DLL（DLL3）**。公式调用的是 `TDXDLL3()`，只有绑到 3 号槽才能调用到本 DLL；若你的 dlls 目录里还有别的 DLL，务必手动把本 DLL 绑到 3 号槽，否则 TDXDLL3 会调用到别的 DLL，导致图表空白 / 选股全无。
 3. 打开公式管理器（Ctrl+F），新建主图公式，将 `tdx_dll\formulas\缠论主图公式.txt` 内容粘贴保存。
